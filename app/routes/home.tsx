@@ -1,5 +1,9 @@
-import type { Route } from "./+types/home";
 import { Welcome } from "../welcome/welcome";
+import type { Route } from "./+types/home";
+
+export const loader = () => {
+  console.log('loader called!');
+}
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -9,5 +13,6 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
+  console.log('home called!');
   return <Welcome />;
 }
