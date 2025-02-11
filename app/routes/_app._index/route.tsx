@@ -1,5 +1,5 @@
 const AppPage = () => {
   return <>Remix Tutorial</>;
-}
+};
 
-export default AppPage
+export default AppPage;

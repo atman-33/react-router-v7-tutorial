@@ -11,12 +11,12 @@ import type { Route } from './+types/root';
 import './app.css';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
-export const  meta = ({}: Route.MetaArgs) => {
+export const meta = ({}: Route.MetaArgs) => {
   return [
     { title: 'Remix Tutorial App' },
     { name: 'description', content: 'Remix Tutorial by React Router!' },
   ];
-}
+};
 
 export const links: Route.LinksFunction = () => [
   { rel: 'preconnect', href: 'https://fonts.googleapis.com' },
