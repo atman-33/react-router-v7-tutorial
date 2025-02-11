@@ -10,7 +10,11 @@
     "typecheck": "react-router typegen && tsc",
     "biome:check:write": "npx biome check --write",
     "--- TEST SECTION ---": "--- --- --- --- ---",
-    "test": "vitest"
+    "test": "vitest",
+    "--- CI SECTION ---": "--- --- --- --- ---",
+    "ci:check": "npx biome ci",
+    "ci:build": "npx env-cmd -f .env.example npm run build",
+    "ci:test": "npm run test"
   },
   "dependencies": {
     "@react-router/node": "^7.1.5",
