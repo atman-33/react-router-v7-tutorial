@@ -9,6 +9,12 @@
     "--- CHECK SECTION ---": "--- --- --- --- ---",
     "typecheck": "react-router typegen && tsc",
     "biome:check:write": "npx biome check --write",
+    "--- DB SECTION ---": "--- --- --- --- ---",
+    "db:migrate:dev": "npx env-cmd -f .env npx prisma migrate dev",
+    "db:push:dev": "npx env-cmd -f .env npx prisma db push",
+    "db:generate": "npx env-cmd -f .env npx prisma generate",
+    "db:studio": "npx env-cmd -f .env npx prisma studio",
+    "db:seed": "npx tsx prisma/seed.ts",
     "--- TEST SECTION ---": "--- --- --- --- ---",
     "test": "vitest",
     "storybook": "storybook dev -p 6006",
@@ -17,9 +23,9 @@
     "ci:check": "npx biome ci",
     "ci:build": "npx env-cmd -f .env.example npm run build",
     "ci:test": "npm run test"
-
   },
   "dependencies": {
+    "@prisma/client": "^6.3.1",
     "@radix-ui/react-slot": "^1.1.2",
     "@react-router/fs-routes": "^7.1.5",
     "@react-router/node": "^7.1.5",
@@ -37,6 +43,7 @@
   "devDependencies": {
     "@biomejs/biome": "1.9.4",
     "@chromatic-com/storybook": "^3.2.4",
+    "@faker-js/faker": "^9.4.0",
     "@react-router/dev": "^7.1.5",
     "@storybook/addon-essentials": "^8.5.3",
     "@storybook/addon-interactions": "^8.5.3",
@@ -49,6 +56,7 @@
     "@types/node": "^20",
     "@types/react": "^19.0.1",
     "@types/react-dom": "^19.0.1",
+    "prisma": "^6.3.1",
     "react-router-devtools": "^1.1.0",
     "storybook": "^8.5.3",
     "tailwindcss": "^4.0.0",
