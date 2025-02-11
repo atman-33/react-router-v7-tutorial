@@ -13,8 +13,8 @@ import './app.css';
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
 export const meta = ({}: Route.MetaArgs) => {
   return [
-    { title: 'Remix Tutorial App' },
-    { name: 'description', content: 'Remix Tutorial by React Router!' },
+    { title: 'React Router App' },
+    { name: 'description', content: 'React Router v7 Tutorial!' },
   ];
 };
 

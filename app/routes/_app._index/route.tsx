@@ -1,5 +1,5 @@
 const AppPage = () => {
-  return <>Remix Tutorial</>;
+  return <>React Router Tutorial</>;
 };
 
 export default AppPage;
