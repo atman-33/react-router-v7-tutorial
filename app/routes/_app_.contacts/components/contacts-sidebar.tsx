@@ -133,7 +133,7 @@ const ContactsSidebar = ({
         </SidebarGroup>
       </SidebarContent>
       <SidebarFooter className="border-t py-4 font-bold">
-        React Router Contacts
+        <Link to="/about">React Router Contacts</Link>
       </SidebarFooter>
     </Sidebar>
   );
