@@ -1,14 +1,15 @@
-import { Welcome } from "../welcome/welcome";
-import type { Route } from "./+types/home";
+import { Welcome } from '../welcome/welcome';
+import type { Route } from './+types/home';
 
 export const loader = () => {
   console.log('loader called!');
-}
+};
 
+// biome-ignore lint/correctness/noEmptyPattern: <explanation>
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: 'New React Router App' },
+    { name: 'description', content: 'Welcome to React Router!' },
   ];
 }
 
