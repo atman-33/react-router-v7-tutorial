@@ -31,7 +31,7 @@ export const action = async ({ request }: Route.ActionArgs) => {
   };
 };
 
-const PocConformPage = ({ actionData }: Route.ComponentProps) => {
+const DemoConformPage = ({ actionData }: Route.ComponentProps) => {
   const [form, { name, email, note }] = useSampleForm();
 
   useEffect(() => {
@@ -82,4 +82,4 @@ const PocConformPage = ({ actionData }: Route.ComponentProps) => {
   );
 };
 
-export default PocConformPage;
+export default DemoConformPage;

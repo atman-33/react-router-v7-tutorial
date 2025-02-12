@@ -9,6 +9,7 @@ import {
 
 import type { Route } from './+types/root';
 import './app.css';
+import { CustomToaster } from './components/shadcn/custom/custom-sonner';
 import { ReactCallRoots } from './components/shared/react-call';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
@@ -55,6 +56,7 @@ export default function App() {
     <>
       <Outlet />
       <ReactCallRoots />
+      <CustomToaster />
     </>
   );
 }
