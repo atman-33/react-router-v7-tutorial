@@ -19,6 +19,8 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
       const res = await prisma.contact.create({ data: newContact });
 
+      // TODO: 後でトースト表示を追加
+
       // 連絡先ページにリダイレクト
       return redirect(`/contacts/${res.id}`);
     }
