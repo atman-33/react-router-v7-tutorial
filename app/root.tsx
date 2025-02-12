@@ -4,11 +4,19 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  data,
   isRouteErrorResponse,
 } from 'react-router';
 
+import { useEffect } from 'react';
 import type { Route } from './+types/root';
 import './app.css';
+import {
+  CustomToaster,
+  showToast,
+} from './components/shadcn/custom/custom-sonner';
+import { ReactCallRoots } from './components/shared/react-call';
+import { commitSession, getSession } from './sessions.server';
 
 // biome-ignore lint/correctness/noEmptyPattern: <explanation>
 export const meta = ({}: Route.MetaArgs) => {
@@ -31,6 +39,18 @@ export const links: Route.LinksFunction = () => [
   },
 ];
 
+export const loader = async ({ request }: Route.LoaderArgs) => {
+  const session = await getSession(request.headers.get('Cookie'));
+  return data(
+    { toast: session.get('toast') },
+    {
+      headers: {
+        'Set-Cookie': await commitSession(session),
+      },
+    },
+  );
+};
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
@@ -49,8 +69,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
   );
 }
 
-export default function App() {
-  return <Outlet />;
+export default function App({ loaderData }: Route.ComponentProps) {
+  const { toast } = loaderData;
+
+  useEffect(() => {
+    if (toast) {
+      showToast(toast.type, { description: toast.message }, toast.type);
+    }
+  }, [toast]);
+  return (
+    <>
+      <Outlet />
+      <ReactCallRoots />
+      <CustomToaster />
+    </>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
