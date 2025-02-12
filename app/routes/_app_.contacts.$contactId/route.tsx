@@ -3,6 +3,7 @@ import { Form, Outlet, useSubmit } from 'react-router';
 import { prisma } from '~/.server/lib/prisma-client';
 import { Button } from '~/components/shadcn/ui/button';
 import { Image } from '~/components/shared/image';
+import { AlertDialog } from '~/components/shared/react-call/alert-dialog';
 import type { Route } from './+types/route';
 import { Favorite } from './components/favorite';
 
@@ -26,9 +27,11 @@ const ContactPage = ({ loaderData }: Route.ComponentProps) => {
     // フォームの送信をキャンセル
     event.preventDefault();
 
-    const res = confirm('Please confirm you want to delete this record.');
+    const res = await AlertDialog.call({
+      message: 'Please confirm you want to delete this record.',
+    });
 
-    if (!res) {
+    if (res === 'cancel') {
       return;
     }
 
