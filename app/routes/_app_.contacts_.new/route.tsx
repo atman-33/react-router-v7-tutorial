@@ -1,5 +1,6 @@
 import { redirect } from 'react-router';
 import { prisma } from '~/.server/lib/prisma-client';
+import { commitSession, getSession } from '~/sessions.server';
 import type { Route } from './+types/route';
 
 export const action = async ({ request }: Route.ActionArgs) => {
@@ -19,10 +20,17 @@ export const action = async ({ request }: Route.ActionArgs) => {
 
       const res = await prisma.contact.create({ data: newContact });
 
-      // TODO: 後でトースト表示を追加
+      // トーストに表示するメッセージを格納
+      const session = await getSession(request.headers.get('Cookie'));
+      session.flash('toast', {
+        type: 'success',
+        message: 'Contact successfully created!',
+      });
 
       // 連絡先ページにリダイレクト
-      return redirect(`/contacts/${res.id}`);
+      return redirect(`/contacts/${res.id}`, {
+        headers: { 'Set-Cookie': await commitSession(session) },
+      });
     }
   }
 };
